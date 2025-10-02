@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MyController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -86,3 +88,48 @@ Route::get('ratarata', function () {
     return view('ratarata', compact('siswa'));
 });
 
+Route::get('test-model',function(){
+    $data = App\Models\Post::all();
+    return $data;
+});
+
+Route::get('create-model', function (){
+    $data = App\Models\Post::create([
+    'title'=>'Ayam betina ',
+    'content'=>'Lorem Ipsum',
+    ]);
+    return $data;
+});
+
+Route::get('show-data/{id}', function($id){
+    $data = App\models\Post::find($id);
+    return $data;
+});
+
+Route::get('edit-data/{id}', function($id) {
+    $data = App\Models\Post::find($id);
+    $data->title = "Membangunprojek dengan laravel";
+    $data->save();
+    return $data;
+});
+
+Route::get('delete-data/{data}', function($id){
+    $data = App\Models\Post::find($id);
+    $data->delete();
+    return redirect('test-model');
+}); 
+
+Route::get('search/{cari}', function ($query){
+    $data = App\Models\Post::where('title','like', '%' . $query . '%')->get();
+    return $data;
+});
+
+Route::get('greetings', [mycontroller::class, 'hello']);
+route::get('student', [MyController::class, 'siswa']);
+
+use App\Http\Controllers\PostController;
+// post
+Route::get('post',[PostController::class, 'index']);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

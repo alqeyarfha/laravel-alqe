@@ -13,8 +13,8 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                     
-                    Selamat Datang Di ASSADIG (Assalaam Digital Library)
+
+                    {{ __('You are logged in!') }}
                 </div>
             </div>
         </div>
