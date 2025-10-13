@@ -26,6 +26,9 @@
                             <a href="{{ route('post.edit',$data->id) }}" class="btn btn-sm btn-success">
                                 Edit
                             </a> |
+                              <a href="{{ route('post.show',$data->id) }}" class="btn btn-sm btn-warning">
+                                show
+                            </a> |
                             <button type="submit" onclick="return confirm('Apakan Anda Yakin?')"
                              class="btn btn-ms btn-danger">Delete</button>
                             </form>
