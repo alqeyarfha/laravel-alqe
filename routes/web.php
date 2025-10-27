@@ -152,4 +152,5 @@ Route::resource('dosen', App\Http\Controllers\DosenController::class)->middlewar
 Route::resource('hobi', App\Http\Controllers\HobiController::class)->middleware('auth');
 
 // CROD One To Many
-Roude::resouce('mahasiswa', App\Http\controller::MahasiswaController::class);
+Route::resource('mahasiswa', App\Http\Controllers\MahasiswaController::class);
+
