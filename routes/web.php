@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MyController;
 use App\Http\Controllers\PostController;
-
+use App\Http\Controllers\BiodataController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -146,3 +146,10 @@ Route::get('post/{id}', [PostController::class, 'show'])->name('post.show');
 Route::delete('post/{id}', [PostController::class, 'destroy'])->name('post.delete');
 
 Route::resource('produk', App\Http\Controllers\ProdukController::class)->middleware('auth');
+
+Route::resource('dosen', App\Http\Controllers\DosenController::class)->middleware('auth');
+
+Route::resource('hobi', App\Http\Controllers\HobiController::class)->middleware('auth');
+
+// CROD One To Many
+Roude::resouce('mahasiswa', App\Http\controller::MahasiswaController::class);
