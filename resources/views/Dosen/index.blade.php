@@ -22,6 +22,7 @@
                                     <th>No</th>
                                     <th>Nama</th>
                                     <th>Nipd</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,7 +46,7 @@
                                 @empty
                                 <tr>
                                     <td colspan="5" class="text-center">
-                                        Data data belum Tersedia.
+                                        Data belum Tersedia.
                                     </td>
                                 </tr>
                                 @endforelse

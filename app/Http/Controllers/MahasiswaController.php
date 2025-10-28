@@ -12,8 +12,8 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        $mahasiswas = Mahasiswa::latest()->get();
-        return view('mahasiswa.index', compact('mahasiswas'));
+        $mahasiswa = Mahasiswa::latest()->get();
+        return view('mahasiswa.index', compact('mahasiswa'));
     }
 
     /**
@@ -29,21 +29,19 @@ class MahasiswaController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'nama'     => 'required',
-            'nim'      => 'required|unique:mahasiswas',
-            'id_dosen' => 'required|exists::dosens,id',
-        ]);
+    {$validated = $request->validate([
+        'nama'     => 'required|string|max:255',
+        'nim'      => 'required|string|unique:mahasiswas,nim',
+        'id_dosen' => 'required|exists:dosens,id',
+    ]);
 
         $mahasiswa           = new Mahasiswa();
         $mahasiswa->nama     = $request->nama;
         $mahasiswa->nim      = $request->nim;
         $mahasiswa->id_dosen = $request->id_dosen;
         $mahasiswa->save();
-        return redirect()->route('mahasiswa.index');
 
-    }
+        return redirect()->route('mahasiswa.index')->with('success', 'Data berhasil disimpan!');}
 
     /**
      * Display the specified resource.
@@ -60,16 +58,19 @@ class MahasiswaController extends Controller
     public function edit(string $id)
     {
         $mahasiswa = Mahasiswa::findOrFail($id);
-        $dosen     =Dosen::all();
-        return view('mahasiswa.edit', compact('mahasiswa'));
+        $dosen     = Dosen::all();
+        return view('mahasiswa.edit', compact('mahasiswa', 'dosen'));
     }
 
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([
-            'nama'     => 'required',
-            'nim'      => 'required|unique',
-            'id_dosen' => 'required|exists::dosens,id',
+            'nama'     => 'required|string|max:255',
+            'nim'      => 'required|string|unique:mahasiswas,nim,' . $id,
+            'id_dosen' => 'required|exists:dosens,id',
         ]);
 
         $mahasiswa           = Mahasiswa::findOrFail($id);
@@ -77,7 +78,8 @@ class MahasiswaController extends Controller
         $mahasiswa->nim      = $request->nim;
         $mahasiswa->id_dosen = $request->id_dosen;
         $mahasiswa->save();
-        return redirect()->route('mahasiswa.index');
+
+        return redirect()->route('mahasiswa.index')->with('success', 'Data berhasil diperbarui!');
 
     }
 
@@ -89,6 +91,5 @@ class MahasiswaController extends Controller
         $mahasiswa = Mahasiswa::findOrFail($id);
         $mahasiswa->delete();
         return redirect()->route('mahasiswa.index');
-
     }
 }
