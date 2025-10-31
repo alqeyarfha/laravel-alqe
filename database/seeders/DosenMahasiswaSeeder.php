@@ -1,5 +1,4 @@
 <?php
-// database/seeders/DosenMahasiswaSeeder.php
 namespace Database\Seeders;
 
 use App\Models\Dosen;
@@ -7,7 +6,10 @@ use Illuminate\Database\Seeder;
 
 class DosenMahasiswaSeeder extends Seeder
 {
-    public function run()
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
     {
         $dosen1 = Dosen::create([
             'nama' => 'Dr. Andi Nugraha',

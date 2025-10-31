@@ -4,6 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MyController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\BiodataController;
+use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\TransaksiController;
+
+
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -153,4 +160,9 @@ Route::resource('hobi', App\Http\Controllers\HobiController::class)->middleware(
 
 // CROD One To Many
 Route::resource('mahasiswa', App\Http\Controllers\MahasiswaController::class);
+
+
+Route::resource('pelanggan', PelangganController::class);
+
+Route::resource('transaksi', TransaksiController::class);
 

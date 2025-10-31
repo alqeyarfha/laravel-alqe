@@ -35,7 +35,13 @@
                                     </span>
                                     @enderror
                                 </div>
-
+                                <div class="mb-3">
+                                    <select name="hobi" id="" class="form-control" multiple>
+                                        @foreach ($hobi as $data)
+                                            <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             <div class="mb-3">
                                 <select name="id_dosen" class="form-control @error('id_dosen') is-invalid @enderror">
                                     @foreach ($dosen as $data)
@@ -46,7 +52,6 @@
                                 <span class="invalid-feedback" role="alert">
                                     <strong {{ $message }}></strong>
                                 </span>
-                                    
                                 @enderror
                             </div>
                             <div class="mb-3">

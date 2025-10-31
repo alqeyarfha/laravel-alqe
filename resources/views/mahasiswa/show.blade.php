@@ -1,14 +1,16 @@
 @extends('layouts.app')
+
 @section('content')
-<div class="container">
-    <div class="card">
-        <div class="card-header">Detail Mahasiswa</div>
-        <div class="card-body">
-            <p><strong>Nama:</strong> {{ $mahasiswa->nama }}</p>
-            <p><strong>NIM:</strong> {{ $mahasiswa->nim }}</p>
-            <p><strong>Dosen Pembimbing:</strong> {{ $mahasiswa->dosen->nama ?? '-' }}</p>
-            <a href="{{ route('mahasiswa.index') }}" class="btn btn-secondary">Kembali</a>
-        </div>
-    </div>
+<div class="container mt-4">
+    <h2>Detail Pelanggan</h2>
+
+    <table class="table table-striped">
+        <tr><th>ID</th><td>{{ $pelanggan->id }}</td></tr>
+        <tr><th>Nama</th><td>{{ $pelanggan->nama }}</td></tr>
+        <tr><th>Alamat</th><td>{{ $pelanggan->alamat }}</td></tr>
+        <tr><th>No HP</th><td>{{ $pelanggan->no_hp }}</td></tr>
+    </table>
+
+    <a href="{{ route('pelanggan.index') }}" class="btn btn-secondary">Kembali</a>
 </div>
 @endsection
