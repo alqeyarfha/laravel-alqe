@@ -9,24 +9,34 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-public function up(): void
-{
-    Schema::create('transaksis', function (Blueprint $table) {
-        $table->id();
-        $table->string('kode_transaksi', 20)->unique();
-        $table->date('tanggal');
-        $table->foreignId('pelanggan_id')->constrained()->onDelete('cascade');
-        $table->decimal('total_harga', 10, 2);
-        $table->timestamps();
-    });
-}
+    public function up(): void
+    {
+        Schema::create('transaksis', function (Blueprint $table) {
+            $table->id();
+            $table->string('kode_transaksi')->unique();
+            $table->foreignId('id_pelanggan')->constrained('pelanggans');
+            $table->date('tanggal');
+            $table->integer('total_harga');
+            $table->timestamps();
+        });
 
+        Schema::create('detail_transaksi', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('id_transaksi')->constrained('transaksis');
+            $table->foreignId('id_produk')->constrained('produks');
+            $table->integer('jumlah');
+            $table->integer('sub_total');
+            $table->timestamps();
+        });
+
+    }
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('transaksi');
+        Schema::dropIfExists('transaksis');
+        Schema::dropIfExists('detail_transaksi');
     }
 };
