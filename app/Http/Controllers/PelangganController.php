@@ -9,12 +9,12 @@ class PelangganController extends Controller
     public function index()
     {
         $pelanggan = Pelanggan::all();
-        return view('pelanggan.index', compact('pelanggan'));
+        return view('latihan.pelanggan.index', compact('pelanggan'));
     }
 
     public function create()
     {
-        return view('pelanggan.create');
+        return view('latihan.pelanggan.create');
     }
 
     public function store(Request $request)
@@ -33,12 +33,12 @@ class PelangganController extends Controller
 
     public function show(Pelanggan $pelanggan)
     {
-        return view('pelanggan.show', compact('pelanggan'));
+        return view('latihan.pelanggan.show', compact('pelanggan'));
     }
 
     public function edit(Pelanggan $pelanggan)
     {
-        return view('pelanggan.edit', compact('pelanggan'));
+        return view('latihan.pelanggan.edit', compact('pelanggan'));
     }
 
     public function update(Request $request, Pelanggan $pelanggan)

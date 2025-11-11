@@ -2,13 +2,27 @@
 
 @section('content')
 <div class="container">
-    <h1>Detail Pelanggan</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>{{ __('Detail Produk') }}</span>
+                    <a href="{{ route('produk.index') }}" class="btn btn-sm btn-outline-primary">Kembali</a>
+                </div>
 
-    <p><strong>ID:</strong> {{ $pelanggan->id }}</p>
-    <p><strong>Nama:</strong> {{ $pelanggan->nama }}</p>
-    <p><strong>Alamat:</strong> {{ $pelanggan->alamat }}</p>
-    <p><strong>No HP:</strong> {{ $pelanggan->no_hp }}</p>
+                <div class="card-body">
+                    @if ($produk->image)
+                    <img src="{{ Storage::url($produk->image)  }}" class="w-100 rounded mb-3" alt="{{ $produk->nama }}">
+                    @else
+                    <img src="{{ asset('images/no-image.png') }}" class="w-100 rounded mb-3" alt="No Image">
+                    @endif
 
-    <a href="{{ route('pelanggan.index') }}">Kembali ke daftar</a>
+                    <h4 class="fw-bold">{{ $produk->nama }}</h4>
+                    <p class="mt-2 mb-1">Harga: <strong>Rp{{ number_format($produk->harga, 0, ',', '.') }}</strong></p>
+                    <p class="mt-2">{!! $produk->deskripsi !!}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

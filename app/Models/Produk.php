@@ -5,8 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Produk extends Model
 {
-    protected $fillable = ['nama_produk', 'stok', 'harga'];
-    protected $visible  = ['nama_produk', 'stok', 'harga'];
+    protected $fillable = ['nama_produk', 'harga', 'stok'];
+    protected $visible  = ['nama_produk','harga', 'stok' ];
 
     public function transaksis()
     {
@@ -15,3 +15,4 @@ class Produk extends Model
             ->withTimestamps();
     }
 }
+
